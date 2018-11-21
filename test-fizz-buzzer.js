@@ -1,39 +1,39 @@
-// import chai, declare expect variable
 const expect = require('chai').expect;
 
-// import adder
-const adder = require('../fizzBuzzer');
+const fizzBuzzer = require('../fizzBuzzer');
 
-// // unit tests for our `fizzBuzzer` function
-// describe('fizzBuzzer', function() {
-  // // test the normal case
-  // it('input must be a numbers', function() {
-  //   // range of normal inputs, including
-  //   // notable cases like negative answers
-  //   const normalCases = [
-  //     {a: 2, b: 3, expected: 5},
-  //     {a: 200, b: 2000, expected: 2200},
-  //     {a: 2, b: -5, expected: -3}
-  //   ];
-  //   // for each set of inputs (a, b), `adder` should
-  //   // produce the expected value
-  //   normalCases.forEach(function(input) {
-  //     const answer = adder(input.a, input.b);
-  //     expect(answer).to.equal(input.expected);
-  //   });
-  // });
+describe('fizzBuzzer', function() {
 
-  it('should raise error if args not a number', function() {
-    // range of bad inputs where not both are numbers
-    const badInputs = [
-      ['a'],
-      ['1'],
-      [false]
-    ];
-    // prove that an error is raised for bad inputs
+  it('should return "fizz-buzz" for multiples of 15', function() {
+    [15, 30, 45].forEach(function(input) {
+      expect(fizzBuzzer(input)).to.equal('fizz-buzz');
+    });
+  });
+
+  it('should return "fizz" for multiples of 3', function() {
+    [3, 6, 9, 12].forEach(function(input) {
+      expect(fizzBuzzer(input)).to.equal('fizz');
+    });
+  });
+
+  it('should return "buzz" for multiples of 5', function() {
+    [5, 10, 20].forEach(function(input) {
+      expect(fizzBuzzer(input)).to.equal('buzz');
+    });
+  });
+
+  it('should return number if not mult of 3 or 5', function() {
+    [1, 2, 4, 7].forEach(function(input) {
+      expect(fizzBuzzer(input)).to.equal(input);
+    });
+  });
+
+  it('should produce error if input isn\'t number', function() {
+    const badInputs = [true, false, 'cat', function() {}, [1, 2, 3]];
     badInputs.forEach(function(input) {
       expect(function() {
-        fizzBuzzer(input[0]);
+          fizzBuzzer(input);
       }).to.throw(Error);
     });
   });
+});
